@@ -35,7 +35,7 @@ public class ApplicationUserController {
         Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, null, new ArrayList<>());
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new RedirectView("/");
+        return new RedirectView("/myprofile");
     }
 
     @GetMapping("/login")
@@ -44,9 +44,16 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/users/{id}")
-    public String getProfile(@PathVariable long id, Model m){
+    public String getSingleUser(@PathVariable long id, Model m){
         ApplicationUser currentUser = applicationUserRepository.findById(id).get();
-        m.addAttribute("user", currentUser);
-        return "profile";
+        m.addAttribute("currentUser", currentUser);
+        return "singleuser";
+    }
+
+    @GetMapping("/myprofile")
+    public String getMyProfile(Principal p, Model m){
+        m.addAttribute("person", applicationUserRepository.findByUsername(p.getName()));
+        m.addAttribute("user", p);
+        return "myprofile";
     }
 }
