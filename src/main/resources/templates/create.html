@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a Post!</title>
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<h4>Ready to add a post...</h4>
+
+<form method="POST" action="/post/create">
+<fieldset>
+    <label>Body of Post: </label>
+    <p><textarea name="body" cols="40" rows="10"></textarea></p>
+    <input type="submit" />
+</fieldset>
+
+</form>
+
+</body>
+</html>

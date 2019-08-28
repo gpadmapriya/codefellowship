@@ -39,14 +39,15 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(){
+    public String getLogin(){
         return "login";
     }
 
     @GetMapping("/users/{id}")
-    public String getSingleUser(@PathVariable long id, Model m){
+    public String getSingleUser(@PathVariable long id, Model m, Principal p){
         ApplicationUser currentUser = applicationUserRepository.findById(id).get();
         m.addAttribute("currentUser", currentUser);
+        m.addAttribute("user", p);
         return "singleuser";
     }
 
