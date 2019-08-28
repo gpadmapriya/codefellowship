@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<ul style="list-style-type:none">
+    <li><b>User Name:</b> <span th:text="${currentUser.username}"></span></li>
+    <li><b>First Name:</b> <span th:text="${currentUser.firstName}"></span></li>
+    <li><b>last Name:</b> <span th:text="${currentUser.lastName}"></span></li>
+    <li><b>Bio:</b> <span th:text="${currentUser.bio}"></span></li>
+
+
+</ul>
+</body>
+</html>

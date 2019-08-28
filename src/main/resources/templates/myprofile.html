@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+<h3>My Profile</h3>
+<div th:if="${user}">
+    Hello, <span th:text="${user.name}"></span>!
+
+    <p>First Name: <span th:text="${person.firstName}"></span></p>
+    <p>Last Name: <span th:text="${person.lastName}"></span></p>
+    <p>Date of Birth: <span th:text="${person.dateOfBirth}"></span></p>
+    <img src="http://via.placeholder.com/250x250">
+    <p>Biography: <span th:text="${person.bio}"/></p>
+
+</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
