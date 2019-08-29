@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <ul>
+        <li th:each="followedUser : ${usersthatifollow}" >
+            <span th:text="${followedUser}"></span>
+            <a th:href="${ '/users/' + followedUser.id}"> <span th:text="${followedUser.username}"></span></a>
+        </li>
+    </ul>
+
+
+</div>
+</body>
+</html>

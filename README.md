@@ -14,7 +14,10 @@
 - When a user is logged in, the app should display the user's name on every page.
 - The site should use at least one reusable template.
 - The site should have a non white label error handling page.
-- At a minimum, test for the functionality of the root route and signup page
+- Allow users to follow other users. Following a user means that their posts show up in the logged-in user’s feed, where they can see what all of their followed users have posted recently.
+- A user can visit a url (like /feed) to view all of the posts from the users that they follow.
+- Each post should have a link to the user profile of the user who wrote the post.
+- At a minimum, test for the functionality of the root route, login and signup page
 
 #### Available Routes
   - / - root route that has links to login or signup
@@ -23,6 +26,8 @@
   - /users/{id} - view specific user information
   - /myprofile - signed in users can view their profile
   - /post/create - signed in users can create new posts
+  - /users - available to signed in users to see all other users
+  - /feed - to view all posts from users that the current user follows
 
 #### To Run
 - Spring MVC should be running
