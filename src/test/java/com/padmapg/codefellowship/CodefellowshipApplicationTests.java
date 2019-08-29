@@ -40,4 +40,11 @@ public class CodefellowshipApplicationTests {
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 
+	@Test
+	public void testLogin() throws Exception {
+		this.mockMvc
+				.perform(MockMvcRequestBuilders.get("/login"))
+				.andDo(MockMvcResultHandlers.print())
+				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
 }

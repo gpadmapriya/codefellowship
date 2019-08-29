@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -24,6 +25,17 @@ public class ApplicationUser implements UserDetails {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
     List<Post> posts;
+
+    @ManyToMany
+    @JoinTable(
+            name="follow_users",
+            joinColumns = { @JoinColumn(name="primaryUser")},
+            inverseJoinColumns = {@JoinColumn(name="followedUsers")}
+    )
+    Set<ApplicationUser> usersThatIFollow;
+
+    @ManyToMany(mappedBy = "usersThatIFollow")
+    Set<ApplicationUser> usersThatFollowMe;
 
     public ApplicationUser(){}
     public ApplicationUser(String username, String password, String firstName, String lastName, String bio, Date dateOfBirth){
@@ -92,5 +104,27 @@ public class ApplicationUser implements UserDetails {
 
     public List<Post> getPosts() {
         return posts;
+    }
+    public void addFollowing(ApplicationUser followedUser){
+        usersThatIFollow.add(followedUser);
+    }
+
+    public Set<ApplicationUser> getUsersThatIFollow() {
+        return usersThatIFollow;
+    }
+
+    public Set<ApplicationUser> getUsersThatFollowMe() {
+        return usersThatFollowMe;
+    }
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        if (this.posts.size() > 0){
+            for (Post post : this.posts){
+                sb.append(post.body);
+                sb.append(", ");
+            }
+            sb.delete(sb.length() - 2, sb.length());
+        }
+        return sb.toString();
     }
 }

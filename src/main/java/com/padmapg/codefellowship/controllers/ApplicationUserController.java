@@ -2,6 +2,7 @@ package com.padmapg.codefellowship.controllers;
 
 import com.padmapg.codefellowship.models.ApplicationUser;
 import com.padmapg.codefellowship.models.ApplicationUserRepository;
+import com.padmapg.codefellowship.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class ApplicationUserController {
@@ -51,6 +53,29 @@ public class ApplicationUserController {
         return "singleuser";
     }
 
+    @PostMapping("/users/{id}")
+    public RedirectView addFollowing(@PathVariable long id, Model m, Principal p){
+        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+        loggedInUser.addFollowing(applicationUserRepository.findById(id).get());
+        applicationUserRepository.save(loggedInUser);
+        return new RedirectView("/");
+    }
+
+    @GetMapping("/users")
+    public String getAllUsers(Model m){
+        List<ApplicationUser> allUsers = applicationUserRepository.findAll();
+        m.addAttribute("allusers", allUsers);
+        return "allUsers";
+
+    }
+    @GetMapping("/feed")
+    public String getUsersPosts(Model m, Principal p){
+        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+        Set<ApplicationUser> usersThatIFollow = loggedInUser.getUsersThatIFollow();
+        m.addAttribute("usersthatifollow", usersThatIFollow);
+        m.addAttribute("user", p);
+        return "feed";
+    }
     @GetMapping("/myprofile")
     public String getMyProfile(Principal p, Model m){
         m.addAttribute("person", applicationUserRepository.findByUsername(p.getName()));

@@ -9,6 +9,7 @@
 
 <ul style="list-style-type:none">
     <li><b>User Name:</b> <span th:text="${currentUser.username}"></span></li>
+    <!--<li><a th:href="${ '/users/' + currentUser.id}">Follow<span th:text="${currentUser.username}"></span></a></li>-->
     <li><b>First Name:</b> <span th:text="${currentUser.firstName}"></span></li>
     <li><b>last Name:</b> <span th:text="${currentUser.lastName}"></span></li>
     <li><b>Bio:</b> <span th:text="${currentUser.bio}"></span></li>
@@ -20,5 +21,13 @@
 
 </ul>
 </ul>
+<div>
+    <form method="POST" th:action="${'/users/' + currentUser.id}">
+
+        <input type="submit" value="Follow"/>
+
+
+    </form>
+</div>
 </body>
 </html>
