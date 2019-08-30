@@ -14,12 +14,14 @@
     <li><b>last Name:</b> <span th:text="${currentUser.lastName}"></span></li>
     <li><b>Bio:</b> <span th:text="${currentUser.bio}"></span></li>
     <li><b>Posts</b></span></li>
-<ul style="list-style-type:none">
+    <div th:each="post : ${currentUser.posts}">
+        <ul style="list-style-type:none">
+            <li>Created At: <span th:text="${post.createdAt}"></span></li>
+            <li>Body: <span th:text="${post.body}"></span></li>
 
-    <li th:each="post : ${currentUser.posts}" th:text="${post.body}"></li>
 
-
-</ul>
+        </ul>
+    </div>
 </ul>
 <div>
     <form method="POST" th:action="${'/users/' + currentUser.id}">
