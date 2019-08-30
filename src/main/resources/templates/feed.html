@@ -5,12 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<div>
-    <ul>
-        <li th:each="followedUser : ${usersthatifollow}" >
-            <span th:text="${followedUser}"></span>
-            <a th:href="${ '/users/' + followedUser.id}"> <span th:text="${followedUser.username}"></span></a>
-        </li>
+<div th:each="post : ${feed}">
+    <ul style="list-style-type:none">
+        <li>Created At: <span th:text="${post.createdAt}"></span></li>
+        <li>Post: <span th:text="${post.body}"></span></li>
+        <li>Author: <a th:href="${ '/users/' + post.owner.id}"> <span th:text="${post.owner.username}"></span></a></li>
     </ul>
 
 

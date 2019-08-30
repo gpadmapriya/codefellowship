@@ -72,7 +72,11 @@ public class ApplicationUserController {
     public String getUsersPosts(Model m, Principal p){
         ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
         Set<ApplicationUser> usersThatIFollow = loggedInUser.getUsersThatIFollow();
-        m.addAttribute("usersthatifollow", usersThatIFollow);
+        List<Post> posts = new ArrayList<>();
+        for (ApplicationUser user: usersThatIFollow){
+            posts.addAll(user.getPosts());
+        }
+        m.addAttribute("feed", posts);
         m.addAttribute("user", p);
         return "feed";
     }
