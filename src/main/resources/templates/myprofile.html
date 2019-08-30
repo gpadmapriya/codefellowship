@@ -15,12 +15,15 @@
     <img src="https://t4.ftcdn.net/jpg/02/15/84/43/500_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg" height="200" width="200">
     <p>Biography: <span th:text="${person.bio}"/></p>
     <p>Posts:</p>
+    <div th:each="post : ${person.posts}">
     <ul style="list-style-type:none">
 
-        <li th:each="post : ${person.posts}" th:text="${post.body}"></li>
-
+        <li>Created At: <span th:text="${post.createdAt}"></span></li>
+        <li>Body: <span th:text="${post.body}"></span></li>
 
     </ul>
+    </div>
 </div>
 </body>
 </html>
+
